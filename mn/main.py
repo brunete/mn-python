@@ -2,7 +2,6 @@ import gauss_seidel as gs
 import jacobi as j
 import lagrange as l
 import numpy as np
-import os
 import util
 
 if __name__ == "__main__":
