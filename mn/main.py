@@ -1,7 +1,12 @@
-import gauss_seidel as gs
-import jacobi as j
-import lagrange as l
 import numpy as np
+
+import gauss_seidel as gs
+import jacobi as jac
+import lagrange as lag
+#import romberg as rom
+import simpson as sim
+import trapecio as tr
+
 import util
 
 if __name__ == "__main__":
@@ -30,7 +35,7 @@ if __name__ == "__main__":
             print('- - - - Jacobi - - - -')
             max_iter = util.solicitar_int('Ingrese numero de iteraciones de Jacobi: ')
             print()
-            j.jacobi(f1,f2,f3,est_x,est_y,est_z,max_iter)
+            jac.jacobi(f1,f2,f3,est_x,est_y,est_z,max_iter)
         
         if opcion == 2:
             print('- - - - Gauss-Seidel - - - -')
@@ -58,14 +63,40 @@ if __name__ == "__main__":
                 fi[i]= float(input(f"y[{i}] = "))
                 print()
 
-        l.lagrange(xi,fi)
+        lag.lagrange(xi,fi)
+
+    def ejecutar_trapecio():
+        f = lambda x: (960-3*x)/4
+        
+        a = util.solicitar_float("Punto inicial: ")
+        b = util.solicitar_float("Punto final: ")
+        m = util.solicitar_int("Particiones: ")
+
+        area = tr.trapecio(f,a,b,m)
+
+        print(f"Area: {area:.3f}")
+        
+    def ejecutar_simpson():
+        f = lambda x: 5*x**2 + 20*x + 6
+        
+        print("Incognita \"x\"")
+        
+        ax = util.solicitar_float("  Punto inicial: ")
+        bx = util.solicitar_float("  Punto final: ")
+        mx = util.solicitar_int("  Particiones: ")
+        
+        res = sim.reglaSimpson(f, ax, bx, mx)
+        print(f"Resultado por regla de Simpson: {res:0.3f}")
+        
+    def ejecutar_romberg():
+        print()
 
     opcion = -1
     while opcion != 0:
-        opciones = np.array([0,1,2,3])
+        opciones = np.array([0,1,2,3,4,5,6])
 
         print("- - - - METODOS NUMERICOS - - - -")
-        print("1. Metodo de Jacobi\n2. Metodo de Gauss-Seidel\n3. Interpolacion de Lagrange\n0. Salir\n")
+        print("1. Metodo de Jacobi\n2. Metodo de Gauss-Seidel\n3. Interpolacion de Lagrange\n4. Metodo del Trapecio\n5. Metodo de Simpson\n6. Integracion de Romberg\n0. Salir\n")
     
         opcion = util.solicitar_int("Elija una opcion: ")
         while not opcion in opciones:
@@ -76,5 +107,11 @@ if __name__ == "__main__":
             ejecutar_jacobi_gauss()
         if opcion == 3:
             ejecutar_lagrange()
-        
+        if opcion == 4:
+            ejecutar_trapecio();
+        if opcion == 5:
+            ejecutar_simpson();
+        if opcion == 6:
+            ejecutar_romberg();
+
         input("Presione ENTER para continuar...")
