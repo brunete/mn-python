@@ -69,26 +69,25 @@ if __name__ == "__main__":
         f = lambda x: 5*x**2 + 20*x + 6
         print("Funcion: 5x^2 + 20x + 6")
         
-        a = util.solicitar_float("Punto inicial: ")
-        b = util.solicitar_float("Punto final: ")
-        m = util.solicitar_int("Particiones: ")
+        a = util.solicitar_float("  Punto inicial: ")
+        b = util.solicitar_float("  Punto final: ")
+        tramos = util.solicitar_int("  Particiones: ")
 
-        area = tr.trapecio(f,a,b,m)
+        area = tr.trapecio(f,a,b,tramos)
 
+        print(f"Resultado por metodo del trapecio: {area:.3f}")
         print(f"Area: {area:.3f}")
         
     def ejecutar_simpson():
         f = lambda x: 5*x**2 + 20*x + 6
         print("Funcion: 5x^2 + 20x + 6")
         
-        print("Incognita \"x\"")
+        a = util.solicitar_float("  Punto inicial: ")
+        b = util.solicitar_float("  Punto final: ")
+        tramos = util.solicitar_int("  Particiones: ")
         
-        ax = util.solicitar_float("  Punto inicial: ")
-        bx = util.solicitar_float("  Punto final: ")
-        mx = util.solicitar_int("  Particiones: ")
-        
-        res = sim.reglaSimpson(f, ax, bx, mx)
-        print(f"Resultado por regla de Simpson: {res:0.3f}")
+        area = sim.reglaSimpson(f, a, b, tramos)
+        print(f"Resultado por regla de Simpson: {area:.3f}")
         
     def ejecutar_romberg():
         f = lambda x: 5*x**2 + 20*x + 6

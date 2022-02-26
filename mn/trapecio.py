@@ -1,5 +1,3 @@
-import numpy as n
-
 def trapecio(f,a,b,tramos):
     h = (b-a)/tramos
     xi = a

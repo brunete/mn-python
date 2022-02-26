@@ -1,4 +1,4 @@
-def reglaSimpson(f, a, b, n):
+def reglaSimpson(f,a,b,n):
     resultado = 0
     sumatoria = 0
     delta = ((b-a)/n)
