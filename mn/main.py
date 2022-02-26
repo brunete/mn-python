@@ -3,7 +3,7 @@ import numpy as np
 import gauss_seidel as gs
 import jacobi as jac
 import lagrange as lag
-#import romberg as rom
+import romberg as rom
 import simpson as sim
 import trapecio as tr
 
@@ -66,7 +66,8 @@ if __name__ == "__main__":
         lag.lagrange(xi,fi)
 
     def ejecutar_trapecio():
-        f = lambda x: (960-3*x)/4
+        f = lambda x: 5*x**2 + 20*x + 6
+        print("Funcion: 5x^2 + 20x + 6")
         
         a = util.solicitar_float("Punto inicial: ")
         b = util.solicitar_float("Punto final: ")
@@ -78,6 +79,7 @@ if __name__ == "__main__":
         
     def ejecutar_simpson():
         f = lambda x: 5*x**2 + 20*x + 6
+        print("Funcion: 5x^2 + 20x + 6")
         
         print("Incognita \"x\"")
         
@@ -89,14 +91,26 @@ if __name__ == "__main__":
         print(f"Resultado por regla de Simpson: {res:0.3f}")
         
     def ejecutar_romberg():
-        print()
+        f = lambda x: 5*x**2 + 20*x + 6
+        print("Funcion: 5x^2 + 20x + 6")
+
+        a = util.solicitar_float("  Punto inicial: ")
+        b = util.solicitar_float("  Punto final: ")
+        
+        rom.romberg(f,a,b)
 
     opcion = -1
     while opcion != 0:
         opciones = np.array([0,1,2,3,4,5,6])
 
         print("- - - - METODOS NUMERICOS - - - -")
-        print("1. Metodo de Jacobi\n2. Metodo de Gauss-Seidel\n3. Interpolacion de Lagrange\n4. Metodo del Trapecio\n5. Metodo de Simpson\n6. Integracion de Romberg\n0. Salir\n")
+        print("1. Metodo de Jacobi\n"
+              "2. Metodo de Gauss-Seidel\n"
+              "3. Interpolacion de Lagrange\n"
+              "4. Metodo del Trapecio\n"
+              "5. Metodo de Simpson\n"
+              "6. Integracion de Romberg\n"
+              "0. Salir\n")
     
         opcion = util.solicitar_int("Elija una opcion: ")
         while not opcion in opciones:
